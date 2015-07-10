@@ -2,9 +2,9 @@
   "name": "server-admin-recipe",
   "version": "0.0.1",
   "description": "server-admin-recipe",
-  "main": "server.js",
+  "main": "Server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node Server.js"
   },
   "dependencies": {
     "body-parser": "^1.13.2",

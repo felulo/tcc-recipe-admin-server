@@ -6,7 +6,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var logger = require('morgan');
-var booksRoutes = require('./Routes.js');
+var recipesRoutes = require('./Routes.js');
 
 mongoose.connect('mongodb://felulo:felipelopes93@ds031647.mongolab.com:31647/heroku_hs7gdcsd', function (err) {
 
@@ -40,7 +40,7 @@ app.get('/ping', function (req, res, next) {
   res.send('pong');
 });
 
-app.use('/book', booksRoutes);
+app.use('/recipes', recipesRoutes);
 
 app.listen(5001, function () {
   console.log('Server listening port 5001');
