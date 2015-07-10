@@ -42,6 +42,6 @@ app.get('/ping', function (req, res, next) {
 
 app.use('/recipes', recipesRoutes);
 
-app.listen(5001, function () {
-  console.log('Server listening port 5001');
+app.listen(process.env.PORT || 5000, function () {
+  console.log('Server listening port ' + process.env.PORT);
 });
