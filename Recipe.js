@@ -4,22 +4,28 @@
 var mongoose = require('mongoose');
 
 var RecipeSchema = new mongoose.Schema({
-  Name: String,
-  Recipes: [{
-    Name: String,
-    Ingredients: [{
-      Quantity: Number,
-      Name: String,
-      Unit: String,
-      Optional: Boolean
+  name: String,
+  recipes: [{
+    name: String,
+    ingredients: [{
+      quantity: Number,
+      name: String,
+      unit: String,
+      optional: Boolean,
+      obs: String
     }],
-    Prepare: String
+    prepare: [String]
   }],
-  Time: String,
-  Yield: [{
-    Count: Number,
-    Unit: String
-  }]
+  time: {
+    hrs: Number,
+    min: Number,
+    sec: Number
+  },
+  yield: {
+    count: Number,
+    unit: String
+  },
+  images: [String]
 });
 
 module.exports = mongoose.model('Recipe', RecipeSchema);
