@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var recipesRoutes = require('./Routes.js');
 
-mongoose.connect('mongodb://felulo:felipelopes93@ds031647.mongolab.com:31647/heroku_hs7gdcsd', function (err) {
+mongoose.connect('mongodb://felulo:felipelopes93@ds045054.mongolab.com:45054/heroku_kt8lvwn6', function (err) {
 
   if (err)
     console.log('connection error: ', err);
