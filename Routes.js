@@ -5,7 +5,6 @@ var express = require('express');
 var _ = require('underscore');
 var router = express.Router();
 
-var mongoose = require('mongoose');
 var Recipe = require('./Recipe.js');
 
 router.get('/', function (req, res, next) {
@@ -24,11 +23,26 @@ router.get('/:id', function (req, res, next) {
   });
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', function(req, res, next) {
   Recipe.create(req.body, function (err, post) {
     if (err) return next(err);
 
     res.json(post);
+  });
+});
+
+router.post('/syncronize', function (req, res, next) {
+  var stream = Recipe.synchronize()
+    , count = 0;
+
+  stream.on('data', function(err, doc){
+    count++;
+  });
+  stream.on('close', function(){
+    res.json({message: 'indexed ' + count + ' documents!'});
+  });
+  stream.on('error', function(err){
+    res.json(err);
   });
 });
 

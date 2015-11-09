@@ -2,6 +2,7 @@
  * Created by felipe.lopes on 10/07/2015.
  */
 var mongoose = require('mongoose');
+var mongoosastic = require('mongoosastic');
 var Schema = mongoose.Schema;
 
 var RecipeSchema = new mongoose.Schema({
@@ -27,6 +28,11 @@ var RecipeSchema = new mongoose.Schema({
     unit: String
   },
   images: [Schema.Types.Mixed]
+});
+
+RecipeSchema.plugin(mongoosastic, {
+  host: 'localhost',
+  port: 9200
 });
 
 module.exports = mongoose.model('Recipe', RecipeSchema);
