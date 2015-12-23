@@ -5,6 +5,15 @@ var mongoose = require('mongoose');
 var mongoosastic = require('mongoosastic');
 var Schema = mongoose.Schema;
 
+var es = require('elasticsearch');
+var url;
+
+url = process.env.SEARCHBOX_URL || 'http://paas:2709e4e93fcce5bd1226a508fb18cad4@fili-us-east-1.searchly.com';
+
+var esClient = new es.Client({
+  host: url
+});
+
 var RecipeSchema = new mongoose.Schema({
   name: String,
   recipes: [{
@@ -31,8 +40,7 @@ var RecipeSchema = new mongoose.Schema({
 });
 
 RecipeSchema.plugin(mongoosastic, {
-  host: 'localhost',
-  port: 9200
+  esClient: esClient
 });
 
 module.exports = mongoose.model('Recipe', RecipeSchema);
